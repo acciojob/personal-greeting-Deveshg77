@@ -1,40 +1,20 @@
+import React, { useState } from "react";
+import './../styles/App.css';
 
-import React, { useState } from 'react';
-
-function Greeting() {
-
-  const [name, setName] = useState('');
- 
-  const [greeting, setGreeting] = useState('');
-
-
-  const handleChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the form from refreshing the page
-    setGreeting(`Hello, ${name}!`); // Update the greeting state
-  };
+const App = () => {
+  const [text, setText] = useState("");
 
   return (
     <div>
-      <h1>Personalized Greeting</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Enter your name:
-          <input
-            type="text"
-            value={name}
-            onChange={handleChange}
-            placeholder="Your name"
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-      {greeting && <p>{greeting}</p>}
+      <label htmlFor="name">Enter your name:</label>
+      <input 
+        type="text" 
+        id="name" 
+        onChange={e => setText(e.target.value)} 
+      />
+     <p>{text && text.length>0?"Hello "+ text+"!":""}</p>
     </div>
   );
 }
 
-export default Greeting;
+export default App;
